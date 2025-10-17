@@ -2,6 +2,7 @@ backend:
   name: proxy
   proxy_url: http://173.249.49.45:9050/cms/proxy
   branch: main
+  repo: hello-snamy/staticpages  # Repository where content is stored
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
