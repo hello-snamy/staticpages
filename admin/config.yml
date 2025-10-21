@@ -1,19 +1,20 @@
 backend:
-  name: proxy
-  proxy_url: http://173.249.49.45:9050/cms/proxy
+  name: github
+  repo: hello-snamy/staticpages
   branch: main
-  repo: hello-snamy/staticpages  # Repository where content is stored
+  base_url: http://173.249.49.45:9050
+  auth_endpoint: /auth/github
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "blog"
-    label: "Blog Posts"
-    folder: "posts"
+    label: "Blog2"
+    folder: "content/blog"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
