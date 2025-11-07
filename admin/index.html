@@ -1,94 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <!-- Custom Auth Script -->
-  <script>
-    const BACKEND_URL = 'http://173.249.49.45:9050';
-    
-    // Check authentication status on load
-    async function checkAuth() {
-      try {
-        const response = await fetch(`${BACKEND_URL}/auth/status`, {
-          credentials: 'include'
-        });
-        const data = await response.json();
-        
-        if (data.authenticated) {
-          // User is authenticated, initialize Decap CMS
-          initCMS(data.token);
-          document.getElementById('login-section').style.display = 'none';
-          document.getElementById('cms-section').style.display = 'block';
-        } else {
-          // Show login button
-          document.getElementById('login-section').style.display = 'block';
-          document.getElementById('cms-section').style.display = 'none';
-        }
-      } catch (error) {
-        console.error('Auth check failed:', error);
-        document.getElementById('login-section').style.display = 'block';
-      }
-    }
-    
-    function login() {
-      window.location.href = `${BACKEND_URL}/auth/github`;
-    }
-    
-    async function logout() {
-      try {
-        await fetch(`${BACKEND_URL}/auth/logout`, {
-          method: 'POST',
-          credentials: 'include'
-        });
-        window.location.reload();
-      } catch (error) {
-        console.error('Logout failed:', error);
-      }
-    }
-    
-    function initCMS(token) {
-      // Decap CMS will use our proxy backend
-      console.log('Initializing Decap CMS with token:', token);
-    }
-    
-    // Check URL parameters for auth callback
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('auth') === 'success') {
-      window.history.replaceState({}, document.title, window.location.pathname);
-      checkAuth();
-    }
-    
-    // Initial auth check
-    document.addEventListener('DOMContentLoaded', checkAuth);
-  </script>
-  
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; }
-    .container { max-width: 800px; margin: 0 auto; }
-    .login-section { text-align: center; padding: 50px 20px; }
-    .login-btn { background: #24292e; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; }
-    .logout-btn { background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-bottom: 20px; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="login-section" class="login-section" style="display: none;">
-      <h2>Content Manager Login</h2>
-      <p>Please login with GitHub to manage content</p>
-      <button class="login-btn" onclick="login()">Login with GitHub</button>
-    </div>
-    
-    <div id="cms-section" style="display: none;">
-      <button class="logout-btn" onclick="logout()">Logout</button>
-      <!-- Decap CMS will be initialized here -->
-      <div id="nc-root"></div>
-    </div>
-  </div>
-</body>
-</html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="robots" content="noindex" />
+      <title>Content Manager</title>
+    </head>
+    <body>
+      <!-- Include the script that builds the page and powers Decap CMS -->
+      <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    </body>
+  </html>
