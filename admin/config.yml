@@ -1,0 +1,6 @@
+backend:
+  name: github
+  repo: hello-snamy/staticpages
+  branch: main
+  base_url: https://suresh-issue-82.dcycleproject.org
+  auth_endpoint: /auth/github/repo/
